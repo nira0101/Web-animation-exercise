@@ -34,5 +34,20 @@ function ballClicked() {
   fallAnimation.pause();
 
   // start zoom-animation
-  document.querySelector("#ball").animate(keyframesZooming, zooming);
+  const zoomAnimation = document
+    .querySelector("#ball")
+    .animate(keyframesZooming, zooming);
+
+  //second part
+  //anonymous finction
+  zoomAnimation.onfinish = () => {
+    //cancel zoom
+    zoomAnimation.cancel();
+
+    // curretnt time added to start the falling animation from start
+    fallAnimation.currentTime = 0;
+
+    //start fall animation
+    fallAnimation.play();
+  };
 }
